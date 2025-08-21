@@ -5,6 +5,7 @@ return {
   lazy = false,
   version = false,
   build = "make",
+  priority = 1000, -- High priority to load early
   opts = {
     provider = "openai",
     auto_suggestions_provider = "openai",
