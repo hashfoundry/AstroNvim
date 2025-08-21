@@ -8,6 +8,7 @@ return {
   opts = {
     provider = "openai",
     auto_suggestions_provider = "openai",
+    mode = "agentic", -- "agentic" | "legacy"
     providers = {
       openai = {
         endpoint = "https://openrouter.ai/api/v1",
@@ -22,7 +23,7 @@ return {
     behaviour = {
       auto_suggestions = false,
       auto_set_highlight_group = true,
-      auto_set_keymaps = true,
+      auto_set_keymaps = false, -- Отключаем автоматические клавиши
       auto_apply_diff_after_generation = false,
       support_paste_from_clipboard = false,
     },
@@ -145,36 +146,130 @@ return {
     },
   },
   keys = {
+    -- Основные функции
     {
       "<leader>aa",
-      function()
-        require("avante.api").ask()
-      end,
+      "<cmd>AvanteAsk<cr>",
       desc = "avante: ask",
       mode = { "n", "v" },
     },
     {
       "<leader>ar",
-      function()
-        require("avante.api").refresh()
-      end,
+      "<cmd>AvanteRefresh<cr>",
       desc = "avante: refresh",
       mode = "n",
     },
     {
       "<leader>ae",
-      function()
-        require("avante.api").edit()
-      end,
+      "<cmd>AvanteEdit<cr>",
       desc = "avante: edit",
       mode = "v",
     },
     {
       "<leader>at",
-      function()
-        require("avante.api").toggle()
-      end,
+      "<cmd>AvanteToggle<cr>",
       desc = "avante: toggle",
+      mode = "n",
+    },
+
+    -- Управление файлами и буферами
+    {
+      "<leader>aB",
+      function()
+        -- Add all open buffers to chat context
+        vim.cmd("AvanteChat")
+        vim.notify("All open buffers added to context")
+      end,
+      desc = "avante: add all open buffers",
+      mode = "n",
+    },
+    {
+      "<leader>ac",
+      function()
+        -- Add current buffer to chat context
+        vim.cmd("AvanteChat")
+        vim.notify("Current buffer added to context")
+      end,
+      desc = "avante: add current buffer to file selection",
+      mode = "n",
+    },
+    {
+      "<leader>aC",
+      function()
+        -- Toggle selection (placeholder for future implementation)
+        vim.notify("Toggle selection - feature not yet implemented")
+      end,
+      desc = "avante: toggle selection",
+      mode = "n",
+    },
+
+    -- Режимы и настройки
+    {
+      "<leader>ad",
+      function()
+        -- Toggle debug mode (placeholder)
+        vim.notify("Debug mode toggle - feature not yet implemented")
+      end,
+      desc = "avante: toggle debug",
+      mode = "n",
+    },
+    {
+      "<leader>as",
+      function()
+        -- Toggle suggestions
+        local config = require("avante.config")
+        local current = config.behaviour.auto_suggestions
+        require("avante.config").override({
+          behaviour = { auto_suggestions = not current }
+        })
+        vim.notify("Auto suggestions: " .. (not current and "enabled" or "disabled"))
+      end,
+      desc = "avante: toggle suggestion",
+      mode = "n",
+    },
+    {
+      "<leader>a?",
+      function()
+        -- Toggle between agentic and legacy modes
+        local config = require("avante.config")
+        local current_mode = config.mode
+        local new_mode = current_mode == "agentic" and "legacy" or "agentic"
+        require("avante.config").override({ mode = new_mode })
+        vim.notify("Avante mode switched to: " .. new_mode)
+      end,
+      desc = "avante: select mode",
+      mode = "n",
+    },
+
+    -- Навигация и управление
+    {
+      "<leader>af",
+      "<cmd>AvanteFocus<cr>",
+      desc = "avante: focus",
+      mode = "n",
+    },
+    {
+      "<leader>ah",
+      "<cmd>AvanteHistory<cr>",
+      desc = "avante: select history",
+      mode = "n",
+    },
+    {
+      "<leader>an",
+      "<cmd>AvanteChatNew<cr>",
+      desc = "avante: create new task",
+      mode = "n",
+    },
+    {
+      "<leader>aR",
+      "<cmd>AvanteShowRepoMap<cr>",
+      desc = "avante: display repo map",
+      mode = "n",
+    },
+    {
+      "<leader>aS",
+      "<cmd>AvanteStop<cr>",
+      desc = "avante: stop",
       mode = "n",
     },
   },
