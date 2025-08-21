@@ -11,9 +11,9 @@ return {
     providers = {
       openai = {
         endpoint = "https://openrouter.ai/api/v1",
-        model = "anthropic/claude-3-5-sonnet-20241022",
+        model = "anthropic/claude-sonnet-4",
         timeout = 30000,
-        max_tokens = 4096,
+        max_tokens = 20480,
         extra_request_body = {
           temperature = 0,
         },
@@ -145,9 +145,37 @@ return {
     },
   },
   keys = {
-    { "<leader>aa", function() require("avante.api").ask() end, desc = "avante: ask", mode = { "n", "v" } },
-    { "<leader>ar", function() require("avante.api").refresh() end, desc = "avante: refresh" },
-    { "<leader>ae", function() require("avante.api").edit() end, desc = "avante: edit", mode = "v" },
-    { "<leader>at", function() require("avante.api").toggle() end, desc = "avante: toggle" },
+    {
+      "<leader>aa",
+      function()
+        require("avante.api").ask()
+      end,
+      desc = "avante: ask",
+      mode = { "n", "v" },
+    },
+    {
+      "<leader>ar",
+      function()
+        require("avante.api").refresh()
+      end,
+      desc = "avante: refresh",
+      mode = "n",
+    },
+    {
+      "<leader>ae",
+      function()
+        require("avante.api").edit()
+      end,
+      desc = "avante: edit",
+      mode = "v",
+    },
+    {
+      "<leader>at",
+      function()
+        require("avante.api").toggle()
+      end,
+      desc = "avante: toggle",
+      mode = "n",
+    },
   },
 }
