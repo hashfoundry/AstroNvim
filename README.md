@@ -1,290 +1,149 @@
-# NeoVim AstroNvim Configuration with AI Assistant
+# AstroNvim Configuration
 
-A modern, VS Code-like NeoVim configuration based on AstroNvim with integrated AI assistant for Node.js development.
+Complete AstroNvim configuration, optimized for Node.js development.
 
 ## Features
 
-### 🤖 AI Assistant Integration
-- **Avante.nvim** with OpenRouter API support
-- Custom tools for Node.js code execution
-- Agentic mode for advanced AI interactions
-- Real-time code execution in visible terminals
+- 🚀 **AstroNvim Base** - Feature-rich NeoVim distribution
+- 🔧 **LSP Support** - TypeScript, JavaScript, JSON, HTML, CSS via Mason
+- 📝 **Enhanced Autocompletion** - Advanced completion with AI suggestions
+- 🌳 **Syntax Highlighting** - Treesitter with enhanced support
+- 📁 **File Management** - Neo-tree file explorer
+- 🔍 **Advanced Search** - Telescope with live grep
+- 🔀 **Git Integration** - Comprehensive git workflow tools
+- 📊 **Modern UI** - AstroUI with customizable themes
+- 🖥️ **Terminal Management** - ToggleTerm with Node.js REPL
+- 📦 **Node.js Tools** - Package management and TypeScript support
 
-### 🚀 Modern Development Environment
-- **AstroNvim** base configuration for VS Code-like experience
-- Enhanced terminal management with ToggleTerm
-- Neo-tree file explorer with Git integration
-- Package.json management with real-time updates
-- Stable plugin configuration for reliable performance
+## Requirements
 
-### 📦 Node.js Development Tools
-- TypeScript/JavaScript enhanced support
-- NPM package management
-- Node.js REPL integration
-- Specialized terminals for different tasks
-- LSP support with Mason
-
-### 🎨 Beautiful Interface
-- Modern UI with clean design
-- Git status indicators
-- Syntax highlighting with Treesitter
-- Customizable themes and layouts
-- Smooth panel transitions
+- Ubuntu 24.04 LTS (or compatible system)
+- Git
+- Node.js LTS
+- Rust (for compiling avante.nvim)
+- OpenRouter API key (optional, for AI features)
 
 ## Project Structure
 
 ```
-config/nvim/
-├── init.lua                    # Main configuration entry point
-├── lua/
-│   ├── config/
-│   │   └── lazy.lua           # Lazy.nvim plugin manager setup
-│   └── plugins/
-│       ├── avante.lua         # AI assistant configuration
-│       ├── nodejs.lua         # Node.js development plugins
-│       └── terminal.lua       # Terminal management configuration
-├── .neoconf.json             # Project-specific settings
-install.sh                     # Automated installation script
-README.md                      # This file
+├── .gitignore                   # Git ignore patterns
+├── install.sh                  # Automated installation script
+├── README.md                   # Project documentation
+└── config/
+    └── nvim/
+        ├── .neoconf.json       # Project configuration
+        ├── init.lua            # AstroNvim bootstrap
+        └── lua/
+            ├── config/
+            │   └── lazy.lua    # AstroNvim and plugin configuration
+            └── plugins/
+                ├── avante.lua      # AI assistant configuration
+                ├── nodejs.lua      # Node.js development tools
+                └── terminal.lua    # Terminal management
 ```
 
-## Installation
+## Getting Started
 
-### Prerequisites
+### 1. Clone Repository
 
-- NeoVim 0.9.0+
-- Node.js 18+
-- Git
-- A terminal with true color support
-- OpenRouter API key
-
-### Quick Setup
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/hashfoundry/nvim-setup.git
-   cd nvim-setup
-   ```
-
-2. **Install on Ubuntu Server:**
-   ```bash
-   chmod +x install.sh
-   ./install.sh
-   ```
-
-3. **Manual installation:**
-   ```bash
-   # Backup existing config
-   mv ~/.config/nvim ~/.config/nvim.backup
-
-   # Copy configuration
-   cp -r config/nvim ~/.config/
-
-   # Set OpenRouter API key
-   export OPENROUTER_API_KEY="your-api-key-here"
-   ```
-
-4. **First launch:**
-   ```bash
-   nvim
-   ```
-   AstroNvim will automatically install all plugins on first launch.
-
-## Configuration
-
-### OpenRouter API Setup
-
-1. Get your API key from [OpenRouter](https://openrouter.ai/)
-2. Set the environment variable:
-   ```bash
-   export OPENROUTER_API_KEY="your-api-key-here"
-   ```
-3. Add to your shell profile for persistence:
-   ```bash
-   echo 'export OPENROUTER_API_KEY="your-api-key-here"' >> ~/.bashrc
-   ```
-
-### Key Mappings
-
-#### AI Assistant (Avante)
-- `<leader>aa` - Ask AI assistant
-- `<leader>ar` - Refresh AI response
-- `<leader>ae` - Edit with AI
-- `<leader>at` - Toggle AI sidebar
-
-#### File Management
-- `<leader>e` - Toggle Neo-tree file explorer
-- `<leader>o` - Focus Neo-tree
-- `<leader>ff` - Find files (Telescope)
-- `<leader>fg` - Live grep (Telescope)
-
-#### Terminal Management
-- `<C-\>` - Toggle floating terminal
-- `<leader>tn` - Toggle Node.js REPL
-- `<leader>tp` - Toggle NPM terminal
-
-#### Package Management
-- `<leader>ns` - Show package info
-- `<leader>nt` - Toggle package info
-- `<leader>nu` - Update package
-- `<leader>ni` - Install package
-
-
-## Usage Examples
-
-### AI-Assisted Development
-
-1. **Ask AI for help:**
-   - Select code and press `<leader>aa`
-   - Type your question or request
-   - AI will analyze and provide suggestions
-
-2. **Execute Node.js code:**
-   - AI can run code snippets directly in terminal
-   - Results appear in visible terminal window
-   - Supports npm commands and file execution
-
-### Node.js Development
-
-1. **Package management:**
-   - Open package.json
-   - Use `<leader>ns` to see package information
-   - Use `<leader>nu` to update packages
-
-2. **Terminal workflows:**
-   - `<leader>tn` for Node.js REPL
-   - `<leader>tp` for NPM commands
-   - `<C-\>` for general terminal
-
-
-## Customization
-
-### Adding New Plugins
-
-Create new files in `lua/plugins/` directory:
-
-```lua
--- lua/plugins/my-plugin.lua
-return {
-  "author/plugin-name",
-  opts = {
-    -- plugin configuration
-  },
-  config = function(_, opts)
-    require("plugin-name").setup(opts)
-  end,
-}
+```bash
+git clone https://github.com/hashfoundry/AstroNvim.git ~/neovim-config
+cd ~/neovim-config
 ```
 
-### Modifying AI Configuration
+### 2. Set Up API Key
 
-Edit `lua/plugins/avante.lua` to:
-- Change AI model
-- Add custom tools
-- Modify UI settings
-- Update key mappings
+```bash
+echo 'export OPENROUTER_API_KEY="your_openrouter_api_key"' >> ~/.bashrc
+source ~/.bashrc
+```
+**Replace `your_openrouter_api_key` with your actual OpenRouter API key for AI features!**
 
-### Theme Customization
+## Quick Installation
 
-AstroNvim comes with multiple themes. You can change themes using AstroNvim's theme selector or by configuring directly:
+### 1. Run Installation Script
 
-```lua
--- Use AstroNvim's theme selector
--- Press <leader>ft to open theme selector
-
--- Or configure directly in your user config
-vim.cmd.colorscheme("astrodark")
--- or
-vim.cmd.colorscheme("tokyonight")
+```bash
+chmod +x install.sh
+./install.sh
 ```
 
-## Troubleshooting
+### 2. First Launch
 
-### Common Issues
+```bash
+nvim
+```
+Plugins will install automatically on first launch.
 
-1. **AI Assistant not working:**
-   - Check OpenRouter API key is set
-   - Verify internet connection
-   - Check `:checkhealth avante`
+## Manual Installation
 
-2. **Plugins not loading:**
-   - Run `:Lazy sync` to update plugins
-   - Check `:Lazy health` for issues
-   - Restart NeoVim
+### Step 1: Update System
 
-3. **LSP not working:**
-   - Run `:Mason` to install language servers
-   - Check `:LspInfo` for status
-   - Verify Node.js is installed
+```bash
+sudo apt update && sudo apt upgrade -y
+```
 
-4. **Terminal issues:**
-   - Check shell configuration
-   - Verify terminal supports true colors
-   - Try different terminal direction
+### Step 2: Install Dependencies
 
-### Performance Optimization
+```bash
+sudo apt install -y curl wget git build-essential unzip software-properties-common
+```
 
-1. **Disable unused features:**
-   ```lua
-   -- In lua/config/options.lua
-   vim.opt.backup = false
-   vim.opt.swapfile = false
-   ```
+### Step 3: Install Node.js
 
-2. **Lazy load plugins:**
-   ```lua
-   -- In plugin configurations
-   lazy = true,
-   event = "VeryLazy",
-   ```
+```bash
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
 
-## Development Workflow
+### Step 4: Install NeoVim
 
-### Typical Session
+```bash
+wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo tar -xzf nvim-linux-x86_64.tar.gz -C /opt/
+sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+```
 
-1. **Start NeoVim:**
-   ```bash
-   nvim
-   ```
+### Step 5: Install Rust (required for avante.nvim)
 
-2. **Open project:**
-   - `<leader>e` to open file explorer
-   - Navigate and open files
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+source ~/.cargo/env
+```
 
-3. **AI-assisted coding:**
-   - Select code, press `<leader>aa`
-   - Ask for improvements or explanations
-   - Let AI execute code snippets
+### Step 6: Install LSP Servers
 
-4. **Testing and debugging:**
-   - Use `<leader>tn` for Node.js REPL
-   - Use `<leader>tp` for NPM commands
-   - Monitor with integrated terminal
+```bash
+npm install -g typescript-language-server @vtsls/language-server eslint_d prettier
+```
 
-### Git Integration
+### Step 7: Copy Configuration
 
-- Git status in file explorer
-- Git signs in editor
-- Use `:Git` commands or external terminal
+```bash
+cp -r config ~/.config
+```
 
-## Contributing
+### Step 8: First Launch
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+```bash
+nvim
+```
+Plugins will install automatically on first launch.
 
-## License
+## Usage
 
-This configuration is open source and available under the MIT License.
+### AI Assistant Features
+- **Code Analysis**: Ask questions about your code structure and logic
+- **Code Generation**: Generate code snippets, functions, and entire modules
+- **Debugging Help**: Get assistance with troubleshooting and error resolution
+- **Code Review**: Receive suggestions for code improvements and best practices
+- **Documentation**: Generate comprehensive documentation for your code
 
-## Support
-
-- Create issues on GitHub for bugs
-- Check AstroNvim documentation for base features
-- Consult Avante.nvim docs for AI features
-
----
-
-**Note:** This configuration is optimized for Node.js development but can be easily extended for other languages by adding appropriate plugins and LSP configurations.
+### Development Workflow
+1. Open NeoVim in your project directory: `nvim .`
+2. Use `<Space>e` to browse project files
+3. Use `<Space>ff` to quickly find and open files
+4. Use `<Space>aa` to ask AI for coding assistance
+5. Use LSP features (`gd`, `gr`, `K`) for code navigation and documentation
+6. Use `<Space>tf` to open terminal for running commands
+7. Use `<Space>gg` for git operations
