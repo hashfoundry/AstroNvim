@@ -113,7 +113,7 @@ Advanced AI-powered coding assistant with Claude Sonnet 4 integration.
 - `<Space>ac` - Add current file to AI context
 - `<Space>aB` - Add all open files to AI context
 - `<Space>as` - Toggle AI auto-suggestions
-- `<Space>a?` - Switch between agentic and legacy AI modes
+- `<Space>a?` - Switch between agentic (act) and legacy (plan) AI modes
 
 ## AstroNvim Core Features
 
